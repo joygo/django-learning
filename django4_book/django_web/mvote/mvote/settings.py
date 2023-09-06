@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'mysite.apps.MysiteConfig',
     'django.contrib.sites',
     'allauth',
-    'allauth.accout',
+    'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     
