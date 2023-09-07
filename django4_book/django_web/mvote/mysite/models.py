@@ -27,6 +27,6 @@ class VoteCheck(models.Model):
 
 class WeatherMonitor(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    temp_range = models.IntegerField(max_length=100, null=False)
+    temp_range = models.IntegerField(null=False)
     def __str__(self):
         return self.temp_range
