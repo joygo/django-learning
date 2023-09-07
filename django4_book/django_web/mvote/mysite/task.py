@@ -35,6 +35,8 @@ def weather_check(self, *args, **kwargs):
             if feels_like_element:
                 feels_like = feels_like_element.text
                 datas = models.WeatherMonitor.objects.all()
+                with open('/home/joygo/w_log.txt', 'a') as f:
+                    f.write('feels_like is {}'.format(feels_like))
                 for data in datas:
                     if data.temp_range < int(feels_like):
                         with open('/home/joygo/w_log.txt', 'a') as f:
