@@ -1,5 +1,6 @@
 <!-- index.html (mvote project) -->
 {% extends "base.html" %}
+{% load mvote_extras %}
 {% block title %}投票趣{% endblock %}
 {% block content %}
     <div class='container'>
@@ -27,5 +28,41 @@
             </div>
         </div>
 
+        <div class='row'>
+            <button class='btn btn-info'>
+                目前是第{{ polls.number }}頁</a>
+            </button>
+            {% if polls.has_previous %}
+                <button class='btn btn-info'>
+                    <a href='?p={{ polls.previous_page_number }}'>上一頁</a>
+                </button>
+            {% endif %}
+            {% if polls.has_next %}
+                <button class='btn btn-info'>
+                    <a href='?p={{ polls.next_page_number }}'>下一頁</a>
+                </button>
+            {% endif %}
+        </div>
+
+        <div class='row'>
+            {% load account %}
+            {% for poll in polls %}
+                {% if forloop.first %}
+                    <div class='list-group'>
+                {% endif %}
+                    <a href='{% url "poll-url" poll.id %}' class='list-group-item'>
+                        <span class='glyphicon glyphicon-check'></span>
+                        總票數：{{ poll.id | show_votes }}
+                        項目數：{{ poll.id | show_items }}
+                        {{ poll.name }}, added by 【{{poll.user}}】,
+                        created at {{poll.created_at}}
+                    </a>
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+            {% empty %}
+                <center><h3>目前並沒有活躍中的投票項目</h3></center>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

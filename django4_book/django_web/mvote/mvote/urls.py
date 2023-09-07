@@ -18,8 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from mysite import views
 from django.urls import include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('poll/<int:pollid>', views.poll, name='poll-url'),
+    path('vote/<int:pollid>/<int:pollitemid>', views.vote, name='vote-url'),
+    path('govote/', views.govote),
     path('accounts/', include('allauth.urls')),
 ]
