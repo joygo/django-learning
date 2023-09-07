@@ -9,6 +9,7 @@
         <ul class='nav navbar-nav'>
             <li class='active'><a href='/'>Home</a></li>
             {% if user.is_authenticated  %}
+            <li><a href="/weather/">天氣監控</a></li>
             <li><a href="/addpoll/">新增(編輯)投票</a></li>
             <li><a href="{% url 'account_reset_password' %}">重設密碼</a></li>
             <li><a href="{% url 'account_email' %}">變更電子郵件</a></li>
