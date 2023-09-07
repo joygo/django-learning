@@ -90,8 +90,8 @@ def govote(request):
 @login_required
 def weather(request):
     try:
-        data = models.WeatherMonitor.objects.get(user_id=request.user.id)
-        if data.exists():
+        data = models.WeatherMonitor.objects.filter(user_id=request.user.id)
+        if data:
             temp = data[0]
     
         if request.method == 'POST':
