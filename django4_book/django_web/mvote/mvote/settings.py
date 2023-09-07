@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.crontab',
     
     'mysite.apps.MysiteConfig',
     'django.contrib.sites',
@@ -47,8 +48,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 ]
 
+CRONJOBS = [
+    ('0 0 * * *', 'myapp.tasks.my_daily_task', '>> /tmp/cron_job.log'),
+]
 
 SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
