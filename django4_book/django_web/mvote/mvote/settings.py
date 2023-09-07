@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    ('0 0 * * *', 'myapp.tasks.my_daily_task', '>> /tmp/cron_job.log'),
+    ('1 0 * * *', 'mysite.tasks.WeatherCrontab', '>> /tmp/cron_job.log'),
 ]
 
 SITE_ID = 1
