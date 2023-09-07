@@ -89,6 +89,16 @@ def govote(request):
 
 @login_required
 def weather(request):
-    temp = models.WeatherMonitor.objects.filter(user_id=request.user.id)[0]
+    try:
+        data = models.WeatherMonitor.objects.get(user_id=request.user.id)
+        if data.exists():
+            temp = data[0]
+    
+        if request.method == 'POST':
+            temp = request.POST.get('temp')
+            models.WeatherMonitor.objects.update_or_create(temp_range=temp)
+        
+    except:
+        pass
     return render(request, 'weather.html', locals())
     

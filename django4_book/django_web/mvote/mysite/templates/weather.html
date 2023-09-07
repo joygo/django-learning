@@ -11,8 +11,15 @@
             <div class='col-md-12'>
                 <div class='panel panel-default'>
                     <div class='panel-heading' align=center>
-                        <h3>溫度限制</h3>
+                        <h3>目前溫度限制</h3>
                             {{temp}}
+                        <form method="post" action="/weather/"> <!-- 请将 action 属性替换为你的表单处理视图的 URL -->
+                            {% csrf_token %}
+                            <label for="temp">溫度限制</label>
+                            <input type="temp" id="temp" name="temp" required>
+                            <br>
+                            <input type="submit" value="提交">
+                        </form>
                     </div>
                 </div>
             </div>
