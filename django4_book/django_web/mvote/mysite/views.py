@@ -86,3 +86,9 @@ def govote(request):
     except:
         votes = 0
         return HttpResponse(votes)
+
+@login_required
+def weather(request):
+    temp = models.WeatherMonitor.objects.filter(user_id=request.user.id)
+    return render(request, 'weather.html', locals())
+    

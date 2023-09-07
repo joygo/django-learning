@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
 from django.db import models
+from django.contrib.auth.models import User
 
 class Poll(models.Model):
     name = models.CharField(max_length=200, null=False)
@@ -23,3 +24,9 @@ class VoteCheck(models.Model):
     userid = models.PositiveIntegerField()
     pollid = models.PositiveIntegerField()
     vote_date = models.DateField()
+
+class WeatherMonitor(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    temp_range = models.IntegerField(max_length=100, null=False)
+    def __str__(self):
+        return self.temp_range
